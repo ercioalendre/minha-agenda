@@ -1,0 +1,53 @@
+<!-- Title -->
+<title>
+  Minha Agenda | Criar uma nova conta
+</title>
+</head>
+<body>
+  <div id="home" class="content">
+    <header>
+      <a href="/">
+        <img src="/images/logo.svg" alt="Minha Agenda Logo" />
+      </a>
+    </header>
+
+    <div id="bg">
+      <div class="ball top"></div>
+      <div class="ball bottom"></div>
+    </div>
+
+    <main>
+      <div class="container">
+        <%- include("message-box"); %>
+        <section>
+          <h2>Criar uma nova conta</h2>
+          <form action="/signup" method="POST">
+            <label for="name" class="scr-only">Nome completo</label>
+            <input type="text" name="name" id="name" placeholder="Nome Completo"
+            <% if (inputError.includes("name")) { %>style="border: .2rem solid
+            var(--red);"<% }; %> <% if (formData.name) { %>value="<%-
+            formData.name; %>"<% }; %>>
+            <label for="email" class="scr-only">E-mail</label>
+            <input type="text" name="email" id="email" placeholder="E-mail" <%
+            if (inputError.includes("email")) { %>style="border: .2rem solid
+            var(--red);"<% }; %> <% if (formData.email) { %>value="<%-
+            formData.email; %>"<% }; %>>
+            <label for="phone" class="scr-only">Telefone</label>
+            <input type="text" name="phone" id="phone" placeholder="Telefone" <%
+            if (inputError.includes("phone")) { %>style="border: .2rem solid
+            var(--red);"<% }; %> <% if (formData.phone) { %>value="<%-
+            formData.phone; %>"<% }; %>>
+            <label for="password" class="scr-only">Senha</label>
+            <input type="password" name="password" id="password"
+            placeholder="Senha" <% if (inputError.includes("password")) {
+            %>style="border: .2rem solid var(--red);"<% }; %>>
+            <button>
+              <img src="/images/users-white.svg" alt="Cadastrar" />
+              Cadastrar
+            </button>
+          </form>
+        </section>
+      </div>
+    </main>
+  </div>
+</body>

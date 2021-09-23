@@ -1,0 +1,99 @@
+<!-- Title -->
+<title>
+  Minha Agenda | Minha conta
+</title>
+</head>
+<body>
+  <div id="room" class="content">
+    <header>
+      <a href="/">
+        <img src="/images/logo.svg" alt="Minha Agenda Logo" />
+      </a>
+      <div class="buttons">
+        <p>Olá, <%= user.name %>!</p>
+        <a href="/logout" class="button grey">
+          <img src="/images/logout.svg" alt="Sair" />
+          Sair
+        </a>
+      </div>
+    </header>
+    <main>
+      <section id="question-form">
+        <div>
+          <% if (msgType==="error" && msgContent) { %>
+          <div class="message-wrapper error" id="message-wrapper">
+            <div class="message-content">
+              <p>
+                <img src="/images/error.svg" alt="Warning" />
+                <%= msgContent; %>
+              </p>
+              <img src="/images/close.svg" alt="Close" class="close-error" id="close-error" />
+            </div>
+          </div>
+          <% }; %> <% if (msgType==="success" && msgContent) { %>
+          <div class="message-wrapper success" id="message-wrapper">
+            <div class="message-content">
+              <p>
+                <img src="/images/success.svg" alt="Success" />
+                <%= msgContent; %>
+              </p>
+              <img src="/images/close.svg" alt="Warning" class="close-error" id="close-error" />
+            </div>
+          </div>
+          <% }; %>
+        </div>
+
+        <% if (msgType==="info" && msgContentWithFaleMais) { %>
+        <div id="calc-wrapper" class="message-wrapper info">
+          <div class="message-content">
+            <p>
+              <span id="calc-results-text-com-fale-mais"><%= msgContentWithFaleMais; %></span>
+              <br />
+              <span id="calc-results-text-sem-fale-mais"><%= msgContentWithoutFaleMais; %></span>
+            </p>
+            <img
+              src="/images/close.svg"
+              alt="Warning"
+              class="close-error"
+              id="close-calc-results-wrapper"
+            />
+          </div>
+        </div>
+        <% }; %>
+
+        <h2>Calcule o custo da sua ligação</h2>
+        <form action="/my-account/calcular" method="POST">
+          <label for="callRoute" class="scr-only">Origem</label>
+          <select name="callRoute" id="callRoute">
+            <option value="">Selecione uma opção</option>
+            <option value="elevenToSixteen">Origem (11) e Destino (16)</option>
+            <option value="sixteenToEleven">Origem (16) e Destino (11)</option>
+            <option value="elevenToSeventeen">Origem (11) e Destino (17)</option>
+            <option value="seventeenToEleven">Origem (17) e Destino (11)</option>
+            <option value="elevenToEighteen">Origem (11) e Destino (18)</option>
+            <option value="eighteenToEleven">Origem (18) e Destino (11)</option>
+          </select>
+          <label for="callDuration" class="scr-only"> Duração da chamada em minutos </label>
+          <input
+            type="number"
+            name="callDuration"
+            id="callDuration"
+            placeholder="Duração da chamada em minutos"
+          />
+          <label for="faleMaisPlan" class="scr-only">Plano FaleMais</label>
+          <select name="selectedFaleMaisPlan" id="selectedFaleMaisPlan" class="select-100">
+            <option value="">Selecione um plano</option>
+            <option value="faleMaisThirty">FaleMais30</option>
+            <option value="faleMaisSixty">FaleMais60</option>
+            <option value="faleMaisOneHundredTwenty">FaleMais120</option>
+          </select>
+          <input type="hidden" id="routeDescription" name="routeDescription">
+          <button>
+            <img src="/images/calculate.svg" alt="Calcular" />
+            Calcular
+          </button>
+        </form>
+      </section>
+    </main>
+  </div>
+</body>
