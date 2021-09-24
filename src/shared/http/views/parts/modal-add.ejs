@@ -1,0 +1,23 @@
+<div id="modal-add-contact" class="modal-wrapper">
+  <div class="modal">
+    <img src="/images/x-symbol.svg" class="btn-close-modal" alt="Fechar" />
+    <div class="modal-content">
+      <div id="add-new-contact">
+        <h2>Adicionar um novo contato</h2>
+        <form action="/my-account/new-contact" method="POST">
+          <label for="name" class="scr-only">Nome</label>
+          <input id="name" name="name" type="text" placeholder="Nome" required />
+          <label for="phone" class="scr-only">Telefone</label>
+          <input id="phone" name="phone" type="text" placeholder="Telefone" required />
+          <label for="email" class="scr-only">E-mail</label>
+          <input id="email" name="email" type="email" placeholder="E-mail (opcional)" />
+          <input id="questionAction" name="questionAction" type="hidden" />
+          <input id="questionId" name="questionId" type="hidden" />
+          <div class="buttons">
+            <button class="blue">Cadastrar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
