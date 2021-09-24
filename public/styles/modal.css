@@ -22,7 +22,6 @@
   border-radius: 0.8rem;
   font-family: "Poppins", sans-serif;
   text-align: center;
-  padding: 6.4rem;
 }
 
 .modal-wrapper .modal h2 {
@@ -58,5 +57,22 @@
 
 .modal-wrapper .modal .buttons > button,
 .modal-wrapper .modal .buttons > .button {
-  padding: 1.3rem 3.2rem;
+  margin-bottom: 4rem;
+  padding: 1.3rem 1.6rem;
+  border: 0.2rem solid var(--blue);
+  width: min(30.2rem, 65%);
+}
+
+.modal-wrapper .modal .btn-close-modal {
+  margin-left: auto;
+  margin-right: 0;
+  display: flex;
+  padding-top: 3rem;
+  padding-right: 3rem;
+  cursor: pointer;
+}
+
+.modal-wrapper .modal .modal-content {
+  padding: 6.4rem;
+  padding-top: 3.2rem;
 }

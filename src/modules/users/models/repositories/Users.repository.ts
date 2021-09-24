@@ -1,27 +1,30 @@
-import mongoose, { ObjectId } from "mongoose";
+import mongoose from "mongoose";
 import { IUser, UsersSchema } from "@modules/users/models/Users.model";
 import { hash } from "bcryptjs";
 import AppError from "@shared/errors/AppError";
+import { ObjectId } from "mongodb";
 
 const User = mongoose.model("User", UsersSchema);
 
 export default class UsersRepository {
+  static async findById(userId: ObjectId): Promise<(mongoose.Document & { _id: ObjectId }) | null> {
+    return await User.findById(userId).exec();
+  }
+
   static async findByPhone(phone: string): Promise<(mongoose.Document & { _id: ObjectId }) | null> {
-    const user = await User.findOne({
+    return await User.findOne({
       where: {
         phone: { $eq: phone },
       },
     }).exec();
-    return user;
   }
 
   static async findByEmail(email: string): Promise<(mongoose.Document & { _id: ObjectId }) | null> {
-    const user = await User.findOne({
+    return await User.findOne({
       where: {
         email: { $eq: email },
       },
     }).exec();
-    return user;
   }
 
   static async create({

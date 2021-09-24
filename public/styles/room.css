@@ -57,7 +57,7 @@
   line-height: 4.2rem;
 }
 
-/* New questions */
+/* New contacts */
 
 .question-wrapper {
   background: var(--light-blue);
@@ -114,7 +114,7 @@
   margin-right: 0.8rem;
 }
 
-/* Questions already read */
+/* contacts already read */
 .question-wrapper.read {
   background: var(--grey-medium);
 }
@@ -123,60 +123,24 @@
   background: var(--grey-blue);
 }
 
-.message-wrapper {
-  margin-bottom: 3rem;
-  border-radius: 0.8rem;
-  padding: 2.4rem;
-}
-
-.message-wrapper .message-content {
-  display: flex;
-  justify-content: space-between;
-}
-
-.message-wrapper .message-content p {
-  display: flex;
-  color: var(--black);
-  font-size: 1.6rem;
-  font-weight: 400;
-  font-family: "Poppins", sans-serif;
-  flex-direction: column;
-}
-
-.message-wrapper .message-content p > img {
-  margin-right: 0.8rem;
-}
-
-.message-wrapper.success {
-  background: var(--light-green);
-}
-
-.message-wrapper.error {
-  background: var(--light-red);
-}
-
-.close-error {
-  cursor: pointer;
-}
-
-.no-questions {
+.no-contacts {
   text-align: center;
   margin-top: 5.2rem;
 }
 
-.no-questions img {
+.no-contacts img {
   max-width: 100%;
   margin-bottom: 1.2rem;
 }
 
-.no-questions p {
+.no-contacts p {
   color: var(--black);
   font-size: 1.8rem;
   font-weight: 600;
   font-family: "Poppins", sans-serif;
 }
 
-.no-questions p + p {
+.no-contacts p + p {
   color: var(--grey-dark);
   font-size: 1.6rem;
   font-weight: 400;

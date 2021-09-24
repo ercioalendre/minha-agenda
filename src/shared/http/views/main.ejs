@@ -43,9 +43,14 @@
     <!-- Scripts -->
     <script src="/scripts/main.js" defer type="module"></script>
     <% if(page === "login-block" || page === "new-user"){ %>
-    <script src="/scripts/masks/phoneMask.js" defer type="module"></script>
+      <script src="/scripts/masks/emailMask.js" defer type="module"></script>
     <% }; %> <% if(page === "new-user" ){ %>
+    <script src="/scripts/masks/phoneMask.js" defer type="module"></script>
     <script src="/scripts/masks/nameMask.js" defer type="module"></script>
+    <script src="/scripts/masks/emailMask.js" defer type="module"></script>
+    <% }; %> <% if(page === "my-account" ){ %>
+    <script src="/scripts/modal.js" defer type="module"></script>
+    <script src="/scripts/masks/phoneMask.js" defer type="module"></script>
     <script src="/scripts/masks/emailMask.js" defer type="module"></script>
     <% }; %>
   <%- include(`parts/${page}`); %>

@@ -33,9 +33,8 @@ export default class CreateUserService {
       password,
     });
 
-    console.log(createUser);
     if (createUser) {
-      await createUserSessionService.execute({ phone, password, origin, res });
+      await createUserSessionService.execute({ email, password, origin, res });
     }
   }
 }

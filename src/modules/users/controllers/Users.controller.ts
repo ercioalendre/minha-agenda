@@ -2,15 +2,18 @@ import { Request, Response } from "express";
 import createUserService from "@modules/users/services/CreateUser.service";
 import createUserSessionService from "@modules/users/services/CreateUserSession.service";
 import AppError from "@shared/errors/AppError";
+import ListContactsService from "@modules/contacts/services/ListContacts.service";
 
-class UsersController {
+export default class UsersController {
   static async index(req: Request, res: Response): Promise<void> {
-    res.render("main", {
+    const contacts = await ListContactsService.execute(res);
+    return res.render("main", {
       page: "my-account",
       msgType: "",
       msgContent: "",
       inputError: "",
       formData: {},
+      contacts,
     });
   }
 
@@ -56,5 +59,3 @@ class UsersController {
     res.clearCookie("UserSessionToken").redirect("/login");
   }
 }
-
-export default UsersController;

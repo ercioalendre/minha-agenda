@@ -5,44 +5,43 @@
     Novo Contato
   </a>
 </div>
+
+<% if(contacts.length === 0){ %>
+<!-- No Contacts -->
+<%- include('no-contacts'); %>
+<!-- No Contacts -->
+<% }; %>
+
+<!-- Content -->
+<% contacts.forEach(contact => { %>
 <div class="question-wrapper">
   <div class="question-content">
     <div class="user">
       <img src="/images/user.svg" alt="Avatar" />
     </div>
     <div class="question">
-      <p>Ercio Alendre</p>
+      <p><%= contact.contact_name %></p>
+      <p><%= contact.contact_phone %></p>
+      <p><%= contact.contact_email %></p>
     </div>
   </div>
   <div class="actions">
-    <a href="#" class="check" data-name="mark-as-read" data-id="">
+    <a href="#" class="edit-contact" data-id="<%= contact._id %>">
       <img src="/images/pencil.svg" alt="Mark as read" />
       Editar
     </a>
-    <a href="#" class="trash" data-name="delete" data-id="">
+    <a href="#" class="delete-contact" data-id="<%= contact._id %>">
       <img src="/images/trash.svg" alt="Delete" />
       Excluir
     </a>
   </div>
 </div>
+<% }); %>
 
-<!-- MODAL -->
-<div class="modal-wrapper">
-  <div class="modal">
-    <h2>Adicionar um novo contato</h2>
-    <form action="#" method="POST">
-      <label for="name" class="scr-only">Nome</label>
-      <input id="name" name="name" type="text" placeholder="Nome" required />
-      <label for="name" class="scr-only">Telefone</label>
-      <input id="name" name="name" type="text" placeholder="Telefone" required />
-      <label for="name" class="scr-only">Nome</label>
-      <input id="name" name="name" type="text" placeholder="Nome" required />
-      <input id="questionAction" name="questionAction" type="hidden" />
-      <input id="questionId" name="questionId" type="hidden" />
-      <div class="buttons">
-        <button class="blue">Enviar</button>
-      </div>
-    </form>
-  </div>
-</div>
-<!-- MODAL -->
+<!-- MODAL (Add Contact) -->
+<%- include(`modal-add.ejs`); %>
+<!-- MODAL (Add Contact) -->
+
+<!-- MODAL (Delete Contact) -->
+<%- include(`modal-delete.ejs`); %>
+<!-- MODAL (Delete Contact) -->

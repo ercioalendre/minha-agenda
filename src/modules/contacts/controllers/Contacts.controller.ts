@@ -1,60 +1,32 @@
 import { Request, Response } from "express";
-import createUserService from "@modules/users/services/CreateUser.service";
-import createUserSessionService from "@modules/users/services/CreateUserSession.service";
 import AppError from "@shared/errors/AppError";
+import CreateContactService from "../services/CreateContact.service";
+import DeleteContactService from "../services/DeleteContact.service";
 
-class UsersController {
-  static async index(req: Request, res: Response): Promise<void> {
-    res.render("main", {
-      page: "my-account",
-      msgType: "",
-      msgContent: "",
-      inputError: "",
-      formData: {},
-    });
-  }
-
-  static async login(req: Request, res: Response): Promise<void> {
-    res.render("main", {
-      page: "login-block",
-      msgType: "",
-      msgContent: "",
-      inputError: "",
-      formData: {},
-    });
-  }
-
-  static async signup(req: Request, res: Response): Promise<void> {
-    res.render("main", {
-      page: "new-user",
-      msgType: "",
-      msgContent: "",
-      inputError: "",
-      formData: {},
-    });
-  }
-
+export default class ContactsController {
   static async create(req: Request, res: Response): Promise<void> {
-    await createUserService.execute(res);
-  }
-
-  static async createUserSession(req: Request, res: Response): Promise<void> {
-    const authHeader = req.body;
-    if (authHeader) {
-      const { phone, password } = authHeader;
-      await createUserSessionService.execute({
-        phone,
-        password,
+    const { name, phone, email } = req.body;
+    try {
+      await CreateContactService.execute(
+        {
+          contact_owner_id: res.locals.user.id,
+          contact_name: name,
+          contact_phone: phone,
+          contact_email: email,
+        },
         res,
-      });
-    } else {
-      throw new AppError("authHeader was not found.");
+      );
+    } catch (error) {
+      throw new AppError(error as string);
     }
   }
 
-  static async logout(req: Request, res: Response): Promise<void> {
-    res.clearCookie("UserSessionToken").redirect("/login");
+  static async delete(req: Request, res: Response): Promise<void> {
+    const { contactId } = req.body;
+    try {
+      await DeleteContactService.execute(res.locals.user.id, contactId, res);
+    } catch (error) {
+      throw new AppError(error as string);
+    }
   }
 }
-
-export default UsersController;
