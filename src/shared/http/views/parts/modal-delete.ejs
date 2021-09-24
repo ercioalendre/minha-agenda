@@ -1,0 +1,17 @@
+<div id="modal-delete-contact" class="modal-wrapper">
+  <div class="modal">
+    <img src="/images/x-symbol.svg" class="btn-close-modal" alt="Fechar" />
+    <div class="modal-content">
+      <div id="add-new-contact">
+        <h2>Excluir um contato</h2>
+        <p>Você tem certeza que deseja excluir este contato?</p>
+        <form action="/my-account/delete-contact" method="POST">
+          <input id="contactId" name="contactId" type="hidden" />
+          <div class="buttons">
+            <button class="red">Excluir</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
