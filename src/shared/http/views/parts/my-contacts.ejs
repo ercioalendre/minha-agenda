@@ -26,22 +26,20 @@
     </div>
   </div>
   <div class="actions">
-    <a href="#" class="edit-contact" data-id="<%= contact._id %>">
-      <img src="/images/pencil.svg" alt="Mark as read" />
+    <a
+      class="edit-contact manage-contact"
+      data-id="<%= contact._id %>"
+      data-name="<%= contact.contact_name %>"
+      data-phone="<%= contact.contact_phone %>"
+      data-email="<%= contact.contact_email %>"
+    >
+      <img src="/images/pencil.svg" alt="Editar" />
       Editar
     </a>
-    <a href="#" class="delete-contact" data-id="<%= contact._id %>">
-      <img src="/images/trash.svg" alt="Delete" />
+    <a class="delete-contact manage-contact" data-id="<%= contact._id %>">
+      <img src="/images/trash.svg" alt="Excluir" />
       Excluir
     </a>
   </div>
 </div>
 <% }); %>
-
-<!-- MODAL (Add Contact) -->
-<%- include(`modal-add.ejs`); %>
-<!-- MODAL (Add Contact) -->
-
-<!-- MODAL (Delete Contact) -->
-<%- include(`modal-delete.ejs`); %>
-<!-- MODAL (Delete Contact) -->
