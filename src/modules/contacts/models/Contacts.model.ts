@@ -2,7 +2,8 @@ import { ObjectId } from "mongodb";
 import mongoose from "mongoose";
 
 export interface IContact {
-  contact_owner_id: ObjectId;
+  contact_owner_id?: ObjectId;
+  contact_id?: ObjectId;
   contact_name: string;
   contact_phone: string;
   contact_email: string;
