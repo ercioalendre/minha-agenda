@@ -57,9 +57,9 @@
 
 .modal-wrapper .modal .buttons > button,
 .modal-wrapper .modal .buttons > .button {
+  margin-top: 2rem;
   margin-bottom: 4rem;
   padding: 1.3rem 1.6rem;
-  border: 0.2rem solid var(--blue);
   width: min(30.2rem, 65%);
 }
 

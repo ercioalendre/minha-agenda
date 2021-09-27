@@ -242,6 +242,20 @@ button.grey:hover,
   width: 180px;
 }
 
+.manage-contact {
+  background: transparent;
+  color: var(--grey-dark);
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  line-height: 0;
+  transition: filter 0.2s;
+  user-select: none;
+}
+
+.manage-contact:hover {
+  filter: brightness(1.2);
+}
+
 @media only screen and (max-width: 768px) {
   .content header > a {
     margin-bottom: 35px;
