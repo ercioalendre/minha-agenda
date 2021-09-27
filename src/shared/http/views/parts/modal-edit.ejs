@@ -1,0 +1,39 @@
+<div id="modal-edit-contact" class="modal-wrapper">
+  <div class="modal">
+    <img src="/images/x-symbol.svg" class="btn-close-modal" alt="Fechar" />
+    <div class="modal-content">
+      <div id="edit-contact">
+        <h2>Editar um contato</h2>
+        <form action="/my-account/edit-contact" method="POST">
+          <label for="editContactName" class="scr-only">Nome</label>
+          <input
+            id="editContactName"
+            name="editContactName"
+            type="text"
+            placeholder="Nome"
+            required
+          />
+          <label for="editContactPhone" class="scr-only">Telefone</label>
+          <input
+            id="editContactPhone"
+            name="editContactPhone"
+            type="text"
+            placeholder="Telefone"
+            required
+          />
+          <label for="editContactEmail" class="scr-only">E-mail</label>
+          <input
+            id="editContactEmail"
+            name="editContactEmail"
+            type="email"
+            placeholder="E-mail (opcional)"
+          />
+          <input id="editContactId" name="editContactId" type="hidden" />
+          <div class="buttons">
+            <button class="blue">Editar contato</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
