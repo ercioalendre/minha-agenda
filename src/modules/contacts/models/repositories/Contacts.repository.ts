@@ -44,6 +44,17 @@ export default class ContactsRepository {
     return contact;
   }
 
+  static async update({
+    contact_name,
+    contact_phone,
+    contact_email,
+    contact_id,
+  }: IContact): Promise<(mongoose.Document & { _id: ObjectId }) | null> {
+    const filter = { _id: contact_id };
+    const update = { contact_name, contact_phone, contact_email };
+    return await Contact.findOneAndUpdate(filter, update).exec();
+  }
+
   static async delete(contactId: ObjectId): Promise<DeleteResult> {
     return await Contact.deleteOne({
       where: {
