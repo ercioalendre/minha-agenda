@@ -15,6 +15,7 @@ usersRouter.post("/login", checkLoginUserForm, UsersController.createUserSession
 usersRouter.get("/logout", UsersController.logout);
 usersRouter.get("/my-account", isAuthenticated, UsersController.index);
 usersRouter.post("/my-account/new-contact", isAuthenticated, ContactsController.create);
+usersRouter.post("/my-account/edit-contact", isAuthenticated, ContactsController.edit);
 usersRouter.post("/my-account/delete-contact/", isAuthenticated, ContactsController.delete);
 
 export default usersRouter;
