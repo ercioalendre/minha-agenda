@@ -1,34 +1,41 @@
 /* eslint-disable no-undef */
 const buttonNewContact = document.getElementById("btn-new-contact");
-const buttonCloseNewContactWindow = document.querySelectorAll(".btn-close-modal");
+const buttonCloseContactModalWindow = document.querySelectorAll(".btn-close-modal");
 const modalWrapper = document.querySelectorAll(".modal-wrapper");
+
+if (buttonNewContact) {
+  buttonNewContact.addEventListener("click", () => {
+    document.getElementById("modal-add-contact").classList.add("active");
+  });
+}
+
+document.querySelectorAll(".edit-contact").forEach(element => {
+  element.addEventListener("click", event => {
+    const modalEditContact = document.getElementById("modal-edit-contact");
+    const inputContactId = document.getElementById("editContactId");
+    const inputContactName = document.getElementById("editContactName");
+    const inputContactPhone = document.getElementById("editContactPhone");
+    const inputContactEmail = document.getElementById("editContactEmail");
+
+    inputContactId.value = event.target.dataset.id;
+    inputContactName.value = event.target.dataset.name;
+    inputContactPhone.value = event.target.dataset.phone;
+    inputContactEmail.value = event.target.dataset.email;
+
+    modalEditContact.classList.add("active");
+  });
+});
 
 document.querySelectorAll(".delete-contact").forEach(element => {
   element.addEventListener("click", event => {
     const modalDeleteContact = document.getElementById("modal-delete-contact");
-    const divAddNewContact = document.getElementById("add-new-contact");
-    const inputContactId = document.getElementById("contactId");
+    const inputContactId = document.getElementById("deleteContactId");
     inputContactId.value = event.target.dataset.id;
-    divAddNewContact.style.visibility = "hidden";
     modalDeleteContact.classList.add("active");
-
-    console.log(event.target.dataset.id);
-
-    window.addEventListener(
-      "keydown",
-      event => {
-        if (event.key == "Escape") {
-          modalDeleteContact.classList.remove("active");
-        } else {
-          return;
-        }
-      },
-      true,
-    );
   });
 });
 
-buttonCloseNewContactWindow.forEach(element => {
+buttonCloseContactModalWindow.forEach(element => {
   element.addEventListener("click", () => {
     modalWrapper.forEach(element => {
       element.classList.remove("active");
@@ -36,24 +43,16 @@ buttonCloseNewContactWindow.forEach(element => {
   });
 });
 
-if (buttonNewContact) {
-  buttonNewContact.addEventListener("click", () => {
-    const divAddNewContact = document.getElementById("add-new-contact");
-
-    divAddNewContact.style.visibility = "visible";
-
-    document.getElementById("modal-add-contact").classList.add("active");
-
-    window.addEventListener(
-      "keydown",
-      event => {
-        if (event.key == "Escape") {
-          modalWrapper.classList.remove("active");
-        } else {
-          return;
-        }
-      },
-      true,
-    );
-  });
-}
+modalWrapper.forEach(element => {
+  window.addEventListener(
+    "keydown",
+    event => {
+      if (event.key == "Escape") {
+        element.classList.remove("active");
+      } else {
+        return;
+      }
+    },
+    true,
+  );
+});
