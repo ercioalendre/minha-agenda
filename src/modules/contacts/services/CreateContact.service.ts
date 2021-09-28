@@ -9,26 +9,28 @@ export default class CreateContactService {
     { contact_owner_id, contact_name, contact_phone, contact_email = "" }: IContact,
     res: Response,
   ): Promise<void | boolean> {
-    const contactOwnerExists = await UsersRepository.findById(contact_owner_id);
+    if (contact_owner_id) {
+      const contactOwnerExists = await UsersRepository.findById(contact_owner_id);
 
-    if (contactOwnerExists) {
-      const createContact = await ContactsRepository.create({
-        contact_owner_id,
-        contact_name,
-        contact_phone,
-        contact_email,
-      });
-
-      if (createContact) {
-        const contacts = await ListContactsService.execute(res);
-
-        res.render("main", {
-          page: "my-account",
-          msgContent: "Contato criado com sucesso",
-          inputError: "",
-          msgType: "success",
-          contacts,
+      if (contactOwnerExists) {
+        const createContact = await ContactsRepository.create({
+          contact_owner_id,
+          contact_name,
+          contact_phone,
+          contact_email,
         });
+
+        if (createContact) {
+          const contacts = await ListContactsService.execute(res);
+
+          res.render("main", {
+            page: "my-account",
+            msgContent: "Contato criado com sucesso!",
+            inputError: "",
+            msgType: "success",
+            contacts,
+          });
+        }
       }
     }
   }
