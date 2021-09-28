@@ -27,7 +27,7 @@ export default class EditContactService {
 
           res.render("main", {
             page: "my-account",
-            msgContent: "Contato criado com sucesso",
+            msgContent: "Contato editado com sucesso!",
             inputError: "",
             msgType: "success",
             contacts,
