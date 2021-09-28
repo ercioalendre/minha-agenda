@@ -13,14 +13,6 @@ export default class ListContactsService {
     if (userExists) {
       const contacts = await ContactsRepository.getAllContacts(userId);
       return contacts;
-      // return res.render("main", {
-      //   page: "my-account",
-      //   msgType: "",
-      //   msgContent: "",
-      //   inputError: "",
-      //   formData: {},
-      //   contacts,
-      // });
     }
   }
 }
