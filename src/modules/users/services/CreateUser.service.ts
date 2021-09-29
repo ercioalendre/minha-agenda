@@ -1,40 +1,50 @@
-import createUserSessionService from "@modules/users/services/CreateUserSession.service";
-import { Response } from "express";
-import renderPageWithMessage from "@shared/http/providers/renderPageWithMessage";
 import UsersRepository from "@modules/users/models/repositories/Users.repository";
+import { IUser } from "@modules/users/models/Users.model";
+import { ObjectId } from "mongodb";
+import mongoose from "mongoose";
 
-export default class CreateUserService {
-  static async execute(res: Response): Promise<void | boolean> {
-    const { name, phone, email, password } = res.locals.formData;
-    const phoneExists = await UsersRepository.findByPhone(phone);
+class CreateUserService {
+  errorMessage: string;
+  inputError: string;
+
+  constructor() {
+    this.errorMessage = "";
+    this.inputError = "";
+  }
+
+  public async execute({
+    name,
+    phone,
+    email,
+    password,
+  }: IUser): Promise<(mongoose.Document & { _id: ObjectId }) | null | boolean | undefined> {
     const emailExists = await UsersRepository.findByEmail(email);
-    const origin = "signup";
-
-    if (res.locals.message.msgContent) {
-      const { msgContent, inputError } = res.locals.message;
-      renderPageWithMessage(msgContent, inputError, res);
-      return false;
-    }
 
     if (emailExists) {
-      renderPageWithMessage("Este endereço de e-mail já está cadastrado.", "email", res);
+      this.errorMessage = "Este endereço de e-mail já está cadastrado.";
+      this.inputError = "email";
       return false;
     }
+
+    const phoneExists = await UsersRepository.findByPhone(phone);
 
     if (phoneExists) {
-      renderPageWithMessage("Este número de telefone já está cadastrado.", "phone", res);
+      this.errorMessage = "Este número de telefone já está cadastrado.";
+      this.inputError = "phone";
       return false;
     }
 
-    const createUser = await UsersRepository.create({
+    const createNewUser = await UsersRepository.create({
       name,
       email,
       phone,
       password,
     });
 
-    if (createUser) {
-      await createUserSessionService.execute({ email, password, origin, res });
+    if (createNewUser) {
+      return true;
     }
   }
 }
+
+export default new CreateUserService();
