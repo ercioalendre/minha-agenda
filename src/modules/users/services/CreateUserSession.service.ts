@@ -8,24 +8,15 @@ import UsersRepository from "@modules/users/models/repositories/Users.repository
 interface IRequest {
   email: string;
   password: string;
-  origin?: string;
   res: Response;
+  origin?: string;
 }
 
 export default class CreateUserSessionService {
-  static async execute({ email, password, origin, res }: IRequest): Promise<void | boolean> {
+  static async execute({ email, password, res, origin }: IRequest): Promise<void | boolean> {
     const user = Object.create(await UsersRepository.findByEmail(email));
     const userPassword = user.password || "";
     const passwordComparison = await compare(password, userPassword);
-    const message = res.locals.message;
-
-    if (message) {
-      if (message.msgContent) {
-        const { msgContent, inputError } = res.locals.message;
-        renderPageWithMessage(msgContent, inputError, res, "login-block", "error", 401);
-        return false;
-      }
-    }
 
     if (!user || !passwordComparison) {
       renderPageWithMessage("E-mail ou senha incorretos.", "", res, "login-block", "error", 401);
