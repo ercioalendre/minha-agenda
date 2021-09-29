@@ -8,6 +8,14 @@
       "header header"
       "left right";
   }
+
+  /* Header */
+  .content header {
+    width: 80%;
+    margin-top: 3.5rem;
+    margin-bottom: 6rem;
+    margin-left: 3.5rem;
+  }
 }
 
 header {
@@ -111,6 +119,7 @@ button,
     align-content: center;
     flex-wrap: wrap;
     flex-direction: column;
+    width: 100%;
   }
 
   main .container {

@@ -260,4 +260,10 @@ button.grey:hover,
   .content header > a {
     margin-bottom: 35px;
   }
+
+  .my-contacts {
+    flex-direction: column;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+  }
 }
