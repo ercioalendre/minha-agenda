@@ -12,19 +12,11 @@ export default class UsersRepository {
   }
 
   static async findByPhone(phone: string): Promise<(mongoose.Document & { _id: ObjectId }) | null> {
-    return await User.findOne({
-      where: {
-        phone: { $eq: phone },
-      },
-    }).exec();
+    return await User.findOne({ phone }).exec();
   }
 
   static async findByEmail(email: string): Promise<(mongoose.Document & { _id: ObjectId }) | null> {
-    return await User.findOne({
-      where: {
-        email: { $eq: email },
-      },
-    }).exec();
+    return await User.findOne({ email }).exec();
   }
 
   static async create({
